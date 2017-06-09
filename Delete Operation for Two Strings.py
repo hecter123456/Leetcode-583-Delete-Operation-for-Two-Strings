@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 
 class unitest(unittest.TestCase):
-    def testEmptyWord(self):
+    def testTwoEmptyWord(self):
         word1 = ""
         word2 = ""
         self.assertEqual(Solution().minDistance(word1,word2),0);
@@ -14,13 +14,14 @@ class unitest(unittest.TestCase):
         word1 = "a"
         word2 = "ab"
         self.assertEqual(Solution().minDistance(word1,word2),1);
-
+    def testOneEmptyWord(self):
+        word1 = ""
+        word2 = "a"
+        self.assertEqual(Solution().minDistance(word1,word2),1);
 class Solution():
     def minDistance(self, word1, word2):
         w = len(word1)
         h = len(word2)
-        if not h or not w:
-            return 0
         exW = w+1
         exH = h+1
         Matrix = [[0 for x in range(exW)] for y in range(exH)] 
