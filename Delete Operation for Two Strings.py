@@ -22,17 +22,10 @@ class Solution():
     def minDistance(self, word1, word2):
         w = len(word1)
         h = len(word2)
-        exW = w+1
-        exH = h+1
-        Matrix = [[0 for x in range(exW)] for y in range(exH)] 
-        for x in range(exH):
-            for y in range(exW):
-                if not x or not y:
-                    Matrix[x][y] = 0
-                elif word2[x-1] == word1[y-1]:
-                    Matrix[x][y] = Matrix[x-1][y-1]+1
-                else:
-                    Matrix[x][y] = max(Matrix[x-1][y],Matrix[x][y-1])
+        Matrix = [[0 for x in range(w+1)] for y in range(h+1)] 
+        for x in range(h):
+            for y in range(w):
+                Matrix[x+1][y+1] = max(Matrix[x][y+1],Matrix[x+1][y],Matrix[x][y] + (word2[x] == word1[y]))
         print(np.matrix(Matrix))
         return w+h-(Matrix[h][w]*2)
 if __name__ == '__main__':
